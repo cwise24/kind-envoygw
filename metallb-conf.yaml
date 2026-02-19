@@ -1,0 +1,15 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ext-pool
+  namespace: metal
+spec:
+  addresses:
+  - 172.19.255.1-172.19.255.20
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: ext-advertisement
+  namespace: metal

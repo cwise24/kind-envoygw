@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metal-lb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  project: default
+  source:
+    chart: metallb 
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: v0.15.3
+  destination:
+    namespace: metal 
+    server: https://kubernetes.default.svc 
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true 
+    - ServerSideApply=ture 
+    automated:
+      prune: true
+      selfHeal: true 

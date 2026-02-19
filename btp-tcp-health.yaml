@@ -1,0 +1,17 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: tcp-health-check
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: backend
+  healthCheck:
+    active:
+      type: TCP
+      tcp: {}
+      interval: 5s
+      timeout: 1s
+      unhealthyThreshold: 3
+      healthyThreshold: 1

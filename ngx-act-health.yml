@@ -1,0 +1,22 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: ngx-health
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: ngx-route
+  healthCheck:
+    active:
+      type: HTTP
+      http:
+        hostname: www.nginx.org
+        path: /
+        expectedResponse:
+          type: Text
+          text: "Welcome to nginx!"
+      interval: 5s
+      timeout: 1s
+      unhealthyThreshold: 3
+      healthyThreshold: 1
