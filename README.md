@@ -313,7 +313,7 @@ Collect the node ip address range provided by the KinD CNI in your Docker networ
 Make necessary edits to the metallb-conf.yaml file under the **IPAddressPool** section. You'll notice two files, IPAddrress Pool and advertisement (L2/L3).
 
 
-```
+
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
