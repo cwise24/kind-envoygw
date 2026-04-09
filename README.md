@@ -3,7 +3,7 @@
 Deploy KinD cluster with Calico
 
 ```
-kind create cluster --config kind-mk-config.yaml --name argocd
+kind create cluster --config kind-mk-config.yaml --name envoygw
 ```
 
 ## View Cluster
@@ -11,10 +11,10 @@ kind create cluster --config kind-mk-config.yaml --name argocd
 ```
 kubectl get nodes
 NAME                  STATUS     ROLES           AGE   VERSION
-NAME                   STATUS   ROLES           AGE    VERSION
-argocd-control-plane   Ready    control-plane   103m   v1.35.0
-argocd-worker          Ready    <none>          102m   v1.35.0
-argocd-worker2         Ready    <none>          102m   v1.35.0
+NAME                    STATUS     ROLES           AGE     VERSION
+envoygw-control-plane   NotReady   control-plane   2m20s   v1.35.0
+envoygw-worker          NotReady   <none>          2m6s    v1.35.0
+envoygw-worker2         NotReady   <none>          2m6s    v1.35.0
 ```
 
 ## Install Calico
