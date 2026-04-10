@@ -11,11 +11,10 @@ spec:
     active:
       type: HTTP
       http:
-        hostname: www.nginx.de
         path: /
-        expectedResponse:
-          type: Text
-          text: "Welcome to nginx!"
+        method: GET 
+        expectedStatuses:
+          - 404
       interval: 5s
       timeout: 1s
       unhealthyThreshold: 3

@@ -367,6 +367,16 @@ kubectl apply -f envoy-app.yaml
 
 Deploy *quickstart.yaml*
 
+```
+kubectl apply -f quickstart.yaml
+```
+
+Nginx quickstart
+
+```
+kubectl apply -f nginx-lab.yaml
+```
+
 This file will deploy 
 
 - Gateway Class
@@ -426,12 +436,14 @@ to do:
 will try tcp health probes
 
 ```
-k apply -f envoy-cat-health.yaml
+k apply -f envoy-act-health.yaml
 ```
 
 ```
 kubectl port-forward deploy/envoy-default-eg-e41e7b31 -n envoy-gateway-system 19000:19000
 ```
+
+[envoy-stats](imgs/envoy-health_check.png)
 
 ```
 curl http://localhost:19000/clusters | grep health
