@@ -43,6 +43,20 @@ watch kubectl get pods -l k8s-app=calico-node -A
 >[!TIP]
 > MacOS zsh does not have watch, brew install watch
 
+
+>[!Note] 
+> You will run into this problem later, so let's adjust now
+
+To temporarily solve this problem you can adjust the settings with these commands:
+
+```
+sudo sysctl fs.inotify.max_user_watches=524288
+sudo sysctl fs.inotify.max_user_instances=512
+```
+More details can be found in the Kind documentationlocated below:
+
+[Kind Docs](https://kind.sigs.k8s.io/docs/user/known-issues/#pod-errors-due-to-too-many-open-files)
+
 # ArgoCD
 
 Install ArgoCD 
@@ -313,7 +327,7 @@ Collect the node ip address range provided by the KinD CNI in your Docker networ
 Make necessary edits to the metallb-conf.yaml file under the **IPAddressPool** section. You'll notice two files, IPAddrress Pool and advertisement (L2/L3).
 
 
-
+```
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
