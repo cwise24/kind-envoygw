@@ -11,7 +11,7 @@ spec:
   source:
     chart: gateway-addons-helm
     repoURL: docker.io/envoyproxy
-    targetRevision: v1.7.0
+    targetRevision: v1.7.1
     helm:
       values: |
         opentelemetry-collector:
