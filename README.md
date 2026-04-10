@@ -443,7 +443,7 @@ k apply -f envoy-act-health.yaml
 kubectl port-forward deploy/envoy-default-eg-e41e7b31 -n envoy-gateway-system 19000:19000
 ```
 
-[envoy-stats](imgs/envoy-health_check.png)
+![envoy-stats](imgs/envoy-health_check.png)
 
 ```
 curl http://localhost:19000/clusters | grep health
