@@ -436,8 +436,9 @@ Your metallb should have provided IPs for these services.
 
 You should be able to access the Grafana page with the external svc IP address.
 
-| User: admin
-| Pass: @dmin!
+User: admin
+
+Pass: @dmin!
 
 ![graf dash](imgs/graf_envoy.png)
 
