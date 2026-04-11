@@ -432,6 +432,13 @@ kubectl get svc -n monitoring
 
 Your metallb should have provided IPs for these services.
 
+You should be able to access the Grafana page with the external svc IP address.
+
+User: admin
+Pass: @dmin!
+
+![graf dash](imgs/graf_envoy.png)
+
 Deploy the *backendtrafficpolicy*
 
 whether targetRefs is httproute or gateway the cluster health log show httproute and pod service port, btp will find service attached to gateway or httproute (more specific) and will look for expected status, if pod is configured for hostname that will be passed too. So in this testing, only expected status is looked at for health. 
