@@ -451,7 +451,7 @@ In short:
 
 to do:
 
-- string
+- string - this testing did work, I set the file ngx-act-health.yml to look for expected text Welcome to Envoy instead of the Welcome to nginx!, it did indeed fail in grafana.
 
 - configure hostname
 
@@ -460,6 +460,8 @@ will try tcp health probes
 ```
 k apply -f envoy-act-health.yaml
 ```
+
+To manually view stats:
 
 ```
 kubectl port-forward deploy/envoy-default-eg-e41e7b31 -n envoy-gateway-system 19000:19000
