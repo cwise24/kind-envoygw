@@ -324,6 +324,8 @@ argocd account update-password --account admin --current-password 'admin_passwor
 
 # Metal LB
 
+<details>
+<summary>Set up Metal LB for external LB</summary>
 
 View available IPAM space from docker:
 
@@ -365,7 +367,7 @@ Now deploy the metal lb manifest:
 ```
 kubetcl apply -f metallb-conf.yaml
 ```
-
+</details>
 
 # Envoy 
 
