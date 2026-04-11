@@ -1,4 +1,4 @@
-# ArgoCD
+# Envoy Gateway
 
 Deploy KinD cluster with Calico
 
@@ -59,7 +59,8 @@ More details can be found in the Kind documentationlocated below:
 
 # ArgoCD
 
-Install ArgoCD 
+<details>
+<summary>Install ArgoCD</summary>
 
 
 Add **argo** repo:
@@ -124,11 +125,13 @@ Password: from above
 
 ![argo-login](imgs/argocd_login.png)
 
-We will do changes from argocd cli 
+We will do changes from argocd cli
+</details>
 
 # Git
 
-Create lab ssh deploy keys
+<details>
+<summary>Create lab ssh deploy keys</summary>
 
 ```
 C.Wise@GJ4HFVQPGW ~ % ssh-keygen -t rsa -b 4096
@@ -191,10 +194,12 @@ Also, take time to scroll and view all the options when setting up the repositor
 ![repo-connected](imgs/repo_connected.png)
 
 You should now see the above screen.
+</details>
 
 # Application
 
-Add application, for this we will use the *envoy* directroy in argocd-repo. The envoy-gateway application will deploy envoy and the gateway api crds for use.
+<details>
+<summary>Add application, for this we will use the *envoy* directroy in argocd-repo. The envoy-gateway application will deploy envoy and the gateway api crds for use.</summary>
  
 
 ![add-application](imgs/application_add.png)
@@ -313,10 +318,14 @@ Set new admin password:
 ```
 argocd account update-password --account admin --current-password 'admin_password' --new-password 'new_password'
 ```
+</details>
 
 ## Lab
 
 # Metal LB
+
+
+View available IPAM space from docker:
 
 ```
 docker inspect kind | jq .[].Status.IPAM.Subnets
@@ -345,13 +354,18 @@ metadata:
   namespace: metal
 ```
 
+Deploy metallb applcation for ArgoCD:
+
+```
+kubectl apply -f argo-apps/metallb-app.yaml
+```
+
 Now deploy the metal lb manifest:
 
 ```
 kubetcl apply -f metallb-conf.yaml
 ```
 
-Deploy metallb applcation *metallb-app.yaml* from ArgoCD
 
 # Envoy 
 
@@ -360,7 +374,7 @@ Deploy metallb applcation *metallb-app.yaml* from ArgoCD
 Deploy the Envoy application for Envoy Gateway. This will also add the necessary CRDs.
 
 ```
-kubectl apply -f envoy-app.yaml
+kubectl apply -f argo-apps/envoy-app.yaml
 ```
 
 # Testing
@@ -389,6 +403,7 @@ View services for Loadbalancer external IP
 
 ```
 cwise@pop-os:~/Projects/GH/kind-envoy$ k get svc -n envoy-gateway-system
+
 NAME                        TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)                                            AGE
 envoy-default-eg-e41e7b31   LoadBalancer   10.96.125.225   172.19.255.1   80:32710/TCP                                       15m
 envoy-gateway               ClusterIP      10.96.200.117   <none>         18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   16m
@@ -406,7 +421,7 @@ curl -H"Host: www.example.com" http://172.19.255.1/get -v
 Deploy the Envoy Gateway Addon application:
 
 ```
-kubectl apply -f envoy-addon-app.yaml
+kubectl apply -f argo-apps/envoy-addon-app.yaml
 ```
 
 Then look for Grafana and Prometheus services in the *monitoring* namespace 
