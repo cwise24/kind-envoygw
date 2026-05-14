@@ -28,7 +28,7 @@ By default, *kind* comes with it's own cni called *kindnetd*. This has been disa
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/tigera-operator.yaml
 ```
 
-**You'll need to run this as we've set a cusoter cidr block**:
+**You'll need to run this as we've set a cluster cidr block**:
 
 ```
 kubectl apply -f calico-custom-resource.yaml
@@ -53,7 +53,7 @@ To temporarily solve this problem you can adjust the settings with these command
 sudo sysctl fs.inotify.max_user_watches=524288
 sudo sysctl fs.inotify.max_user_instances=512
 ```
-More details can be found in the Kind documentationlocated below:
+More details can be found in the Kind documentation located below:
 
 [Kind Docs](https://kind.sigs.k8s.io/docs/user/known-issues/#pod-errors-due-to-too-many-open-files)
 
@@ -199,7 +199,7 @@ You should now see the above screen.
 # Application
 
 <details>
-<summary>Add application, for this we will use the *envoy* directroy in argocd-repo. The envoy-gateway application will deploy envoy and the gateway api crds for use.</summary>
+<summary>Add application, for this we will use the *envoy* directory in argocd-repo. The envoy-gateway application will deploy envoy and the gateway api crds for use.</summary>
  
 
 ![add-application](imgs/application_add.png)
@@ -333,9 +333,9 @@ View available IPAM space from docker:
 docker inspect kind | jq .[].Status.IPAM.Subnets
 ```
 
-Collect the node ip address range provided by the KinD CNI in your Docker network. We will use avaiable IP space from this subnet to use for IPAM for MetalLB
+Collect the node ip address range provided by the KinD CNI in your Docker network. We will use available IP space from this subnet to use for IPAM for MetalLB
 
-Make necessary edits to the metallb-conf.yaml file under the **IPAddressPool** section. You'll notice two files, IPAddrress Pool and advertisement (L2/L3).
+Make necessary edits to the metallb-conf.yaml file under the **IPAddressPool** section. You'll notice two files, IPAddress Pool and advertisement (L2/L3).
 
 
 ```
@@ -356,7 +356,7 @@ metadata:
   namespace: metal
 ```
 
-Deploy metallb applcation for ArgoCD:
+Deploy metallb application for ArgoCD:
 
 ```
 kubectl apply -f argo-apps/metallb-app.yaml
@@ -612,7 +612,7 @@ kubectl apply -f btp-lb.yaml
 ```
 
 ```
-kubectl dealte po --all
+kubectl delete po --all
 ```
 
 ```
